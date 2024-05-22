@@ -1,0 +1,31 @@
+def calcular_troco(preco_litro, litros_abastecidos, valor_pago):
+    total_pagar = preco_litro * litros_abastecidos
+    if valor_pago < total_pagar:
+        falta_pagar = total_pagar - valor_pago
+        return falta_pagar, 0
+    else:
+        troco = valor_pago - total_pagar
+        return 0, troco
+
+# Dicionário com os preços dos combustíveis por litro
+precos_combustiveis = {
+    'e': 4.50,
+    'g': 6.00,
+    'd': 5.20
+}
+
+# Entrada de dados
+tipo_combustivel = input("Digite o tipo de combustível (etanol, gasolina ou diesel): ").lower()
+litros_abastecidos = float(input("Digite a quantidade de litros abastecidos: "))
+valor_pago = float(input("Digite o valor pago: "))
+
+# Verificação do tipo de combustível e cálculo do troco
+if tipo_combustivel in precos_combustiveis:
+    preco_litro = precos_combustiveis[tipo_combustivel]
+    falta_pagar, troco = calcular_troco(preco_litro, litros_abastecidos, valor_pago)
+    if falta_pagar > 0:
+        print(f"Falta pagar: R${falta_pagar:.2f}")
+    else:
+        print(f"Troco a ser devolvido: R${troco:.2f}")
+else:
+    print("Tipo de combustível inválido.")
